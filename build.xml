@@ -1,0 +1,42 @@
+<project name="employee-service" default="build" basedir=".">
+  <description>
+    simple example build file
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src.dir" location="src/main/java"/>
+  <property name="build.dir" location="build"/>
+  
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build.dir}/classes"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source">
+    <!-- Compile the Java code from ${src} into ${build} -->
+    <javac srcdir="${src.dir}" destdir="${build.dir}/classes"/>
+  </target>
+
+  <target name="build" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${build.dir}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+    <jar jarfile="${build.dir}/lib/employee-service.jar" basedir="${build.dir}/classes"/>
+  </target>
+
+  <target name="clean"
+        description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build.dir}"/>
+  </target>
+  <target name="zip">
+     <zip destfile="release/employee-service.zip">
+        <zipfileset dir="bin" prefix="bin"/>
+        <zipfileset dir="build/lib" prefix="lib"/>
+     </zip>
+    </target>
+</project>
