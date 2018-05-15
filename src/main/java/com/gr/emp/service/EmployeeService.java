@@ -7,19 +7,25 @@ import java.util.HashMap;
 
 public class EmployeeService {
 
-        public static Employee createEmployee(int id, String name) {
-            return EmployeeDao.createEmployee(id, name);
-        }
-        
-        public static Employee retreiveEmployee(int id) {
-            return EmployeeDao.retreiveEmployee(id);
-        }
-        
-        public static Employee updateEmployee(int id, String name) {
-            return EmployeeDao.updateEmployee(id,name);
+        private EmployeeDao empDao;
+
+        public EmployeeService(EmployeeDao empDao) {
+            this.empDao = empDao;
         }
 
-        public static void deleteEmployee(int id) {
-            EmployeeDao.deleteEmployee(id);
+        public Employee createEmployee(int id, String name) {
+            return this.empDao.createEmployee(id, name);
+        }
+        
+        public Employee retreiveEmployee(int id) {
+            return this.empDao.retreiveEmployee(id);
+        }
+        
+        public Employee updateEmployee(int id, String name) {
+            return this.empDao.updateEmployee(id,name);
+        }
+
+        public void deleteEmployee(int id) {
+            this.empDao.deleteEmployee(id);
         } 
 }

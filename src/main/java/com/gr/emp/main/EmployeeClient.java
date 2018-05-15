@@ -3,6 +3,7 @@ package com.gr.emp.main;
 import java.util.Scanner;
 import com.gr.emp.domain.Employee;
 import com.gr.emp.service.EmployeeService;
+import com.gr.emp.dao.EmployeeDao;
 
 public class EmployeeClient {
              
@@ -14,6 +15,9 @@ public class EmployeeClient {
         System.out.println("3. Update Employee");
         System.out.println("4. Delete Employee");
         System.out.println("5. Exit\n");
+        
+        EmployeeService empService = new EmployeeService(new EmployeeDao());
+        
               
         Scanner s = new Scanner(System.in);
         System.out.println("Please select your option");
@@ -30,7 +34,7 @@ public class EmployeeClient {
                     
                     
                     System.out.println("Creating Employee..");
-                    Employee emp = EmployeeService.createEmployee(i,name);
+                    Employee emp = empService.createEmployee(i,name);
                     System.out.println("Employee created successfully");
                     System.out.println("Please select your next option");
                     break;
@@ -38,7 +42,7 @@ public class EmployeeClient {
             case 2: System.out.println("Retreiving Employee..");
                     System.out.println("Which Employee would you like to retreive?");
                     int idToSearch = s.nextInt();
-                    Employee searchEmp = EmployeeService.retreiveEmployee(idToSearch);
+                    Employee searchEmp = empService.retreiveEmployee(idToSearch);
                     if(searchEmp == null) { 
                         System.out.println("Employee not found for id "+idToSearch);
                     }else {
@@ -55,7 +59,7 @@ public class EmployeeClient {
                     s.nextLine();
                     System.out.println("Now modify the Employee name");
                     String updatedName = s.nextLine();
-                    Employee updateEmp = EmployeeService.updateEmployee(idToUpdate, updatedName);
+                    Employee updateEmp = empService.updateEmployee(idToUpdate, updatedName);
                     if(updateEmp == null) {
                         System.out.println("Invalid id entered");
                     } 
@@ -68,7 +72,7 @@ public class EmployeeClient {
             case 4: System.out.println("deleting Employee..");
                     System.out.println("Which Employee woukd you like to delete?");
                     int idToDelete = s.nextInt();
-                    EmployeeService.deleteEmployee(idToDelete);
+                    empService.deleteEmployee(idToDelete);
                     System.out.println("Employee deleted successfully");
                     System.out.println("Please select your next option");
                     break;
