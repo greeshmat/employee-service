@@ -1,32 +1,11 @@
 package com.gr.emp.main;
 
-import java.util.*;
+import java.util.Scanner;
 import com.gr.emp.domain.Employee;
+import com.gr.emp.service.EmployeeService;
 
-public class EmployeeDetails {
-        
-        private static Employee createEmployee(int id, String name) {
-            Employee e1 = new Employee();
-                e1.setId(id);
-                e1.setName(name);
-                return e1;
-        }
-        
-        private static Employee retreiveEmployee(int id, HashMap<Integer, Employee> empMap) {
-            return empMap.get(id);
-        }
-        
-        private static Employee updateEmployee(int id, HashMap<Integer, Employee> empMap, String name) {
-            Employee updateEmp = empMap.get(id);
-            updateEmp.setName(name);
-            empMap.put(id, updateEmp);
-            return updateEmp;
-        }
-
-        private static void deleteEmployee(int id, HashMap<Integer, Employee> empMap) {
-            empMap.remove(id);
-        } 
-        
+public class EmployeeClient {
+             
     public static void main(String args[]) {
     
         System.out.println("\n      ***Menu***\n");
@@ -35,9 +14,7 @@ public class EmployeeDetails {
         System.out.println("3. Update Employee");
         System.out.println("4. Delete Employee");
         System.out.println("5. Exit\n");
-        
-        HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
-        
+              
         Scanner s = new Scanner(System.in);
         System.out.println("Please select your option");
         int n=0;
@@ -53,8 +30,7 @@ public class EmployeeDetails {
                     
                     
                     System.out.println("Creating Employee..");
-                    Employee emp = createEmployee(i,name);
-                    empMap.put(i, emp);
+                    Employee emp = EmployeeService.createEmployee(i,name);
                     System.out.println("Employee created successfully");
                     System.out.println("Please select your next option");
                     break;
@@ -62,7 +38,7 @@ public class EmployeeDetails {
             case 2: System.out.println("Retreiving Employee..");
                     System.out.println("Which Employee would you like to retreive?");
                     int idToSearch = s.nextInt();
-                    Employee searchEmp = retreiveEmployee(idToSearch, empMap);
+                    Employee searchEmp = EmployeeService.retreiveEmployee(idToSearch);
                     if(searchEmp == null) { 
                         System.out.println("Employee not found for id "+idToSearch);
                     }else {
@@ -79,15 +55,20 @@ public class EmployeeDetails {
                     s.nextLine();
                     System.out.println("Now modify the Employee name");
                     String updatedName = s.nextLine();
-                    Employee updateEmp = updateEmployee(idToUpdate, empMap, updatedName);
-                    System.out.println("Employee modified successfully");
+                    Employee updateEmp = EmployeeService.updateEmployee(idToUpdate, updatedName);
+                    if(updateEmp == null) {
+                        System.out.println("Invalid id entered");
+                    } 
+                    else {
+                        System.out.println("Employee modified successfully");
+                    }  
                     System.out.println("Please select your next option");
                     break;
         
             case 4: System.out.println("deleting Employee..");
                     System.out.println("Which Employee woukd you like to delete?");
                     int idToDelete = s.nextInt();
-                    deleteEmployee(idToDelete, empMap);
+                    EmployeeService.deleteEmployee(idToDelete);
                     System.out.println("Employee deleted successfully");
                     System.out.println("Please select your next option");
                     break;
