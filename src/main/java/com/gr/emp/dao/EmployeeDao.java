@@ -5,9 +5,9 @@ import com.gr.emp.domain.Employee;
 
 public class EmployeeDao {
 
-     private static HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
+     private HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
      
-     public static Employee createEmployee(int id, String name) {
+     public Employee createEmployee(int id, String name) {
             Employee e1 = new Employee();
                 e1.setId(id);
                 e1.setName(name);
@@ -15,11 +15,11 @@ public class EmployeeDao {
                 return e1;
         }
         
-        public static Employee retreiveEmployee(int id) {
+        public Employee retreiveEmployee(int id) {
             return empMap.get(id);
         }
         
-        public static Employee updateEmployee(int id, String name) {
+        public Employee updateEmployee(int id, String name) {
             Employee updateEmp = empMap.get(id);
             if(updateEmp!= null) {
                 updateEmp.setName(name);
@@ -29,7 +29,7 @@ public class EmployeeDao {
             return updateEmp;
         }
 
-        public static void deleteEmployee(int id) {
+        public void deleteEmployee(int id) {
             empMap.remove(id);
         } 
 }
