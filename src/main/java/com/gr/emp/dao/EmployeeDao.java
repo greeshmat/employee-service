@@ -3,7 +3,7 @@ package com.gr.emp.dao;
 import java.util.HashMap;
 import com.gr.emp.domain.Employee;
 
-public class EmployeeDao {
+public class EmployeeDao implements IEmployeeDao {
 
      private HashMap<Integer, Employee> empMap = new HashMap<Integer, Employee>();
      

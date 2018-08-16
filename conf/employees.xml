@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<employees>
+    <employee type="fulltime">
+        <id>102</id>
+        <name>greeshma</name>
+    </employee>
+    <employee type="fulltime">
+        <id>103</id>
+        <name>Meenakshi</name>
+    </employee>
+</employees>

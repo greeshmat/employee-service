@@ -4,6 +4,8 @@ import java.util.Scanner;
 import com.gr.emp.domain.Employee;
 import com.gr.emp.service.EmployeeService;
 import com.gr.emp.dao.EmployeeDao;
+import com.gr.emp.dao.EmployeeXmlDao;
+import com.gr.emp.dao.EmployeeDbDao;
 
 public class EmployeeClient {
              
@@ -16,7 +18,7 @@ public class EmployeeClient {
         System.out.println("4. Delete Employee");
         System.out.println("5. Exit\n");
         
-        EmployeeService empService = new EmployeeService(new EmployeeDao());
+        EmployeeService empService = new EmployeeService(new EmployeeDbDao());
         
               
         Scanner s = new Scanner(System.in);

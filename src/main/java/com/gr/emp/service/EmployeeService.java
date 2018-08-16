@@ -1,15 +1,15 @@
 package com.gr.emp.service;
 
 import com.gr.emp.domain.Employee;
-import com.gr.emp.dao.EmployeeDao;
+import com.gr.emp.dao.IEmployeeDao;
 import java.util.HashMap;
 
 
 public class EmployeeService {
 
-        private EmployeeDao empDao;
+        private IEmployeeDao empDao;
 
-        public EmployeeService(EmployeeDao empDao) {
+        public EmployeeService(IEmployeeDao empDao) {
             this.empDao = empDao;
         }
 
